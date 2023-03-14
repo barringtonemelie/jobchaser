@@ -1,6 +1,6 @@
-# jobchaser
+# Jobchaser
  
-A project by Team Banana @ Chas Academy
+A project by Team Banana @ Chas Academy!
 
 Diego Rivas Marroquin
 
