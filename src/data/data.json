@@ -1,0 +1,43 @@
+[
+  {
+    "id": 1,
+    "company": "Iphone",
+    "description": "A company that sells phones",
+    "tags": [
+        "remote",
+        "backend"
+    ],
+    "e-mail": "apple@gmail.com"
+  },
+  {
+    "id": 2,
+    "company": "Apple",
+    "description": "Overly expensive computers and phones",
+    "tags": [
+      "backend",
+      "on-site",
+      "full-time"
+    ],
+    "e-mail": "ap@gmail.com"
+  },
+  {
+    "id": 3,
+    "company": "Spotify",
+    "description": "Frontend internship?",
+    "tags": [
+      "frontend",
+      "internship",
+      "part-time"
+    ],
+    "e-mail": "spotify@mail.com"
+  },
+  {
+    "id": 4,
+    "company":"Amazon",
+    "description":"System utvecklare",
+    "tags": [
+      "fullstack",
+      "full-time"
+    ]
+  }
+]
