@@ -1,14 +1,25 @@
 import * as React from 'react'
 import './css/App.css'
+import { JobItemm, SearchBar } from './components/index.jsx';
 
 function App() {
 
   
 
   return (
-    <div className="App">
-      <h1 className="text-3xl font-bold underline">Jobchaser</h1>
-      <JobList />
+    // <div className="App">
+    //   <h1 className="text-3xl font-bold underline">Jobchaser</h1>
+    //   {/* <JobList /> */}
+    //   <SearchBar />
+    //   <JobItemm />
+      
+    // </div>
+
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <div style={{ width: '65%'}}>     
+        <SearchBar />
+        <JobItemm />      
+      </div>
     </div>
   )
 }
