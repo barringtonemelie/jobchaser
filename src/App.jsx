@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { JobItemm, SearchBar } from './components/index.jsx';
+import { JobItem, SearchBar } from './components/index.jsx';
 
 function App() {
 
@@ -31,7 +31,7 @@ function App() {
       <div style={{ width: '65%'}}>     
         <SearchBar />
         <ul>
-          {jobData.map((data) => <JobItemm data={data} key={data.id}/>)}
+          {jobData.map((data) => <JobItem data={data} key={data.id}/>)}
         </ul>
       </div>
     </div>
