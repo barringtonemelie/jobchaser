@@ -7,7 +7,7 @@ function JobItem(props) {
             {/* {console.log(props.data.time) } */}
           <div className="row no-gutters">
             <div className="col-md-4">
-              <img src={props.data.img} className="card-img m-auto h-100" alt="Company Logo" style={{ height: '100px', width: '150px' }} />
+              <img src={props.data.img} className="card-img m-auto h-100" alt="Company Logo" style={{ height: '100px', width: '160px' }} />
             </div>
             <div className="col-md-8">
               <div className="card-body">

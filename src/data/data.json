@@ -1,9 +1,9 @@
 [
   {
     "id": 1,
-    "img": "src/Apple-logo.png",
-    "company": "Iphone",
-    "description": "A company that sells phones",
+    "img": "src/images/Apple-logo.png",
+    "company": "Apple",
+    "description": "Backend developer",
     "time": "05/03/2023",
     "tags": [
         "remote",
@@ -13,9 +13,9 @@
   },
   {
     "id": 2,
-    "img": "src/Apple-logo.png",
-    "company": "Apple",
-    "description": "Overly expensive computers and phones",
+    "img": "https://1000logos.net/wp-content/uploads/2017/06/Samsung-Logo-2.png",
+    "company": "Samsung",
+    "description": "System utvecklare",
     "time": "06/03/2023",
     "tags": [
       "backend",
