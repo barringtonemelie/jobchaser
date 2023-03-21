@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import store from "../store/index"
-import { displayJobs } from "../store/slices/dataSlice"
+import { setJobs } from "../store/slices/dataSlice"
 
 
 function Render() {
@@ -14,7 +14,13 @@ function Render() {
 
 
     const handleSubmit = () => {
-        dispatch(displayJobs())
+        fetch("./src/data/data.json")
+            .then((res) => res.json())
+            .then((data) => {
+                dispatch(setJobs(data))
+            })
+
+        // dispatch(displayJobs())
         console.log("Jobs: ", jobs)
     }
 

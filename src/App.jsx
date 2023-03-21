@@ -1,30 +1,29 @@
 import * as React from 'react'
 import { JobItem, SearchBar } from './components/index.jsx';
-import Redux from './components/Redux';
+import { useDispatch, useSelector } from "react-redux"
+import store from "./store/index"
+import { setJobs } from "./store/slices/dataSlice"
 
 function App() {
 
-  const [jobData, setJobData] = React.useState([]);
+  const dispatch = useDispatch()
 
   React.useEffect(() => {
-
-    async function getData() {
-      const response = await fetch("./src/data/data.json")
-        .then((response) => {
-          return response.json()
-        })
-        .catch((error) => {
-          console.error(error);
-        })
-
-      setJobData(response);
-    }
-
-    getData();
-
+    fetch("./src/data/data.json")
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch(setJobs(data))
+        setJob(store.getState())
+      })
   }, [])
 
-  // console.log("Job data: ", jobData); 
+  function setJob(state) {
+    const jobs = state.data.value;
+    console.log("Jobs: ", jobs);
+    jobs.map((item) => {
+      console.log(item)
+    })
+  }
 
   return (
 
@@ -32,10 +31,9 @@ function App() {
       <div style={{ width: '65%' }}>
         <SearchBar />
         <ul>
-          {jobData.map((data) => <JobItem data={data} key={data.id} />)}
+          {/* {jobs.map((job) => <JobItem data={job} key={job.id} />)} */}
         </ul>
       </div>
-      <Redux />
     </div>
   )
 }
