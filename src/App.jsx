@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { JobItem, SearchBar } from './components/index.jsx';
+import Redux from './components/Redux';
 
 function App() {
 
@@ -7,33 +8,34 @@ function App() {
 
   React.useEffect(() => {
 
-      async function getData() {
-        const response = await fetch("./src/data/data.json")
+    async function getData() {
+      const response = await fetch("./src/data/data.json")
         .then((response) => {
-        return response.json()
-      })
-      .catch((error) => {
-        console.error(error); 
-      })
+          return response.json()
+        })
+        .catch((error) => {
+          console.error(error);
+        })
 
-      setJobData(response); 
+      setJobData(response);
     }
 
-    getData(); 
-    
+    getData();
+
   }, [])
 
   // console.log("Job data: ", jobData); 
-  
+
   return (
 
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <div style={{ width: '65%'}}>     
+      <div style={{ width: '65%' }}>
         <SearchBar />
         <ul>
-          {jobData.map((data) => <JobItem data={data} key={data.id}/>)}
+          {jobData.map((data) => <JobItem data={data} key={data.id} />)}
         </ul>
       </div>
+      <Redux />
     </div>
   )
 }
