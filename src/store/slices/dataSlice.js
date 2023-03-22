@@ -13,7 +13,6 @@ const jobSlice = createSlice({
             state.value = action.payload
         }
         //filterJobs: (state, action) => {
-
         // }
     }
 })

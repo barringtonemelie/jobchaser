@@ -13,17 +13,10 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         dispatch(setJobs(data))
-        setJob(store.getState())
       })
   }, [])
 
-  function setJob(state) {
-    const jobs = state.data.value;
-    console.log("Jobs: ", jobs);
-    jobs.map((item) => {
-      console.log(item)
-    })
-  }
+  const jobs = useSelector((state) => state.data.value); 
 
   return (
 
@@ -31,7 +24,7 @@ function App() {
       <div style={{ width: '65%' }}>
         <SearchBar />
         <ul>
-          {/* {jobs.map((job) => <JobItem data={job} key={job.id} />)} */}
+          {jobs.map((job) => <JobItem data={job} key={job.id} />)}
         </ul>
       </div>
     </div>
