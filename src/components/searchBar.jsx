@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function SearchBar() {
   return (
 
-    <div className="input-group mb-3 mt-3">
+    <div className="input-group mb-5 mt-5">
           <div className="input-group-prepend">
             <button className="btn btn-primary h-100" type="button" style={{backgroundColor: '#0d6efd'}}>
               <BsSearch />

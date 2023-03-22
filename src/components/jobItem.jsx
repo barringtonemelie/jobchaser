@@ -1,13 +1,13 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { toast } from 'react-toastify';
 function JobItem(props) {
+  
   return (
     
-        <div className="card mb-3 mt-3">
-            {/* {console.log(props.data.time) } */}
+        <div className="card mb-3 mt-3 p">
           <div className="row no-gutters">
             <div className="col-md-4">
-              <img src={props.data.img} className="card-img m-auto h-100" alt="Company Logo" style={{ height: '100px', width: '160px' }} />
+              <img src={props.data.img} className="card-img mr-auto ml-auto h-100" alt="Company Logo" style={{ width: '160px' }} />
             </div>
             <div className="col-md-8">
               <div className="card-body">
@@ -18,7 +18,14 @@ function JobItem(props) {
                 <div className="d-flex justify-content-between align-items-center">
                   <small>{"Posted " + props.data.time}</small>
                 
-                  <button className="btn btn-primary">Apply Now</button>
+                  <button className="btn btn-primary" onClick={() => {
+                    let todaysDate = new Date();
+                    toast.success(props.data.description + " - " + props.data.company + ", Applied! \n" + todaysDate.toUTCString() , {
+                    position: "top-center",
+                    theme: "colored",
+                    });
+                  }}>Apply Now</button>
+
                 </div>
                 <span>{"#" + props.data.tags.join(' #')}</span>
               </div>

@@ -20,10 +20,10 @@ function App() {
 
   return (
 
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <div className='mt-5' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <div style={{ width: '65%' }}>
         <SearchBar />
-        <ul>
+        <ul style={{paddingLeft: 0}}>
           {jobs.map((job) => <JobItem data={job} key={job.id} />)}
         </ul>
       </div>
