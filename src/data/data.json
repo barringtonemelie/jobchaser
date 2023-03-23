@@ -7,7 +7,8 @@
     "time": "05/03/2023",
     "tags": [
         "remote",
-        "backend"
+        "backend",
+        "job"
     ],
     "e-mail": "apple@gmail.com"
   },
@@ -21,7 +22,8 @@
       "backend",
       "on-site",
       "full-time",
-      "developer"
+      "developer",
+      "job"
     ],
     "e-mail": "ap@gmail.com"
   },
@@ -35,7 +37,8 @@
       "frontend",
       "internship",
       "part-time",
-      "react"
+      "react",
+      "job"
     ],
     "e-mail": "spotify@mail.com"
   },
@@ -48,7 +51,8 @@
     "tags": [
       "fullstack",
       "full-time",
-      "developer"
+      "developer",
+      "job"
     ]
   }
 ]

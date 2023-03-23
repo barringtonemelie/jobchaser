@@ -8,16 +8,22 @@ import { setSearchInput, filterSearch } from ".././store/slices/dataSlice"
 function SearchBar() {
   const jobs = useSelector((state) => state.data.value); 
   const [search, setSearch] = useState();
+  const [searchValue, setSearchValue] = useState('');
+  const [showFilters, setShowFilters] = useState(false);
   const dispatch = useDispatch()
  
-  function handleChange(value) {
-    setSearch(value.toString().toLowerCase());
-  }
-
-  const [showFilters, setShowFilters] = useState(false);
-
   const toggleFilters = () => {
     setShowFilters(!showFilters);
+  };
+
+  function handleChange(value) {
+    setSearch(value.toString().toLowerCase());
+    setSearchValue(value);
+  }
+
+  const handleTagClick = (tag) => {
+    setSearchValue("#" + tag);
+    setShowFilters(false);
   };
 
   // Jag har lagt några extra taggar, vi kan göra koden snyggare på nästa gång vi jobbar tillsammans
@@ -32,6 +38,7 @@ function SearchBar() {
     "fullstack",
     "full-time",
     "developer",
+    "job",
   ];
 
   return (
@@ -43,13 +50,13 @@ function SearchBar() {
               dispatch(setSearchInput(search));
               dispatch(filterSearch()); 
               setShowFilters(false);
-            }} className="btn btn-primary h-100" type="button" style={{backgroundColor: '#0d6efd'}} >
+            }} className={"btn btn-primary h-100"} type="button" style={{backgroundColor: '#0d6efd'}} >
               <BsSearch />
             </button>
           </div>
-          <input type="search" className="form-control rounded-3 border-success" placeholder="Search" aria-label="Search" style={{ marginRight: '10px', marginLeft: '10px' }} onChange={(e) => handleChange(e.target.value)} />
+          <input type="search" className="form-control rounded-3 border-success" placeholder="Search" aria-label="Search" style={{ marginRight: '10px', marginLeft: '10px' }} value={searchValue} onChange={(e) => handleChange(e.target.value)} />
           <div className="input-group-append">
-            <button className="btn btn-outline-secondary h-100" type="button" onClick={toggleFilters}>
+            <button className={`btn ${showFilters ? 'btn-primary h-100' : 'btn-outline-secondary h-100'}`} type="button" onClick={toggleFilters}>
               <BsFilter />
             </button>
           </div>
@@ -61,8 +68,9 @@ function SearchBar() {
                   dispatch(setSearchInput(tag));
                   dispatch(filterSearch());
                   setShowFilters(false); 
-                  console.log(tag);
-                }}>{tag}</button>
+                  handleTagClick(tag)
+                  // console.log(tag);
+                }}>{"#" + tag}</button>
               ))}
             </div>
             )}

@@ -17,7 +17,7 @@ function App() {
   }, [])
 
   const jobs = useSelector((state) => state.data.searchedJobs); 
-  console.log(useSelector((state) => state.data.currentSearch)); 
+  // console.log(useSelector((state) => state.data.currentSearch)); 
 
   return (
 

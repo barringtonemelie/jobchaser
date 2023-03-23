@@ -17,22 +17,22 @@ const jobSlice = createSlice({
         },
         setSearchInput: (state, action) => {
             state.currentSearch = action.payload;
-            console.log(state.currentSearch); 
+            // console.log(state.currentSearch); 
         },
         filterSearch: (state, action) => {
             
             state.searchedJobs = state.value.filter(
                 (job) => {
-                  console.log(keys.some(key => job[key].includes(state.currentSearch)))
+                //   console.log(keys.some(key => job[key].includes(state.currentSearch)))
                   if (keys.some(key => job[key].toString().toLowerCase().includes(state.currentSearch))) {
-                    console.log(job);
+                    // console.log(job);
                     return job; 
                   }
                 }
                 
             )
 
-            console.log("State", state.value); 
+            // console.log("State", state.value); 
         }
     }
 })
