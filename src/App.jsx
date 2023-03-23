@@ -16,16 +16,17 @@ function App() {
       })
   }, [])
 
-  const jobs = useSelector((state) => state.data.value); 
+  const jobs = useSelector((state) => state.data.searchedJobs); 
+  console.log(useSelector((state) => state.data.currentSearch)); 
 
   return (
 
     <div className='mt-5' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <div style={{ width: '65%' }}>
         <SearchBar />
-        {/* <ul style={{paddingLeft: 0}}>
+        <ul style={{paddingLeft: 0}}>
           {jobs.map((job) => <JobItem data={job} key={job.id} />)}
-        </ul> */}
+        </ul>
       </div>
     </div>
   )
