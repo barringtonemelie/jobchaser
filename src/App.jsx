@@ -24,8 +24,8 @@ function App() {
     <div className='mt-5' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <div style={{ width: '65%' }}>
         <SearchBar />
-        <ul style={{paddingLeft: 0}}>
-          {jobs.map((job) => <JobItem data={job} key={job.id} />)}
+        <ul style={{paddingLeft: '0', marginTop: '30px'}}>
+          {jobs.map((job) => <JobItem data={job} key={job.id} className="mt-3" />)}
         </ul>
       </div>
     </div>

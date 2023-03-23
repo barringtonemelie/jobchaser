@@ -20,7 +20,8 @@
     "tags": [
       "backend",
       "on-site",
-      "full-time"
+      "full-time",
+      "developer"
     ],
     "e-mail": "ap@gmail.com"
   },
@@ -33,7 +34,8 @@
     "tags": [
       "frontend",
       "internship",
-      "part-time"
+      "part-time",
+      "react"
     ],
     "e-mail": "spotify@mail.com"
   },
@@ -45,7 +47,8 @@
     "time": "01/03/2023",
     "tags": [
       "fullstack",
-      "full-time"
+      "full-time",
+      "developer"
     ]
   }
 ]

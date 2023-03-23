@@ -4,7 +4,7 @@ function JobItem(props) {
   
   return (
     
-        <div className="card mb-3 mt-3 p">
+        <div className="card mb-3 mt-3">
           <div className="row no-gutters">
             <div className="col-md-4">
               <img src={props.data.img} className="card-img mr-auto ml-auto h-100" alt="Company Logo" style={{ width: '160px' }} />
