@@ -61,7 +61,7 @@ function SearchBar() {
             </button>
           </div>
           {showFilters && (
-            <div className="dropdown-menu show" style={{ marginTop: "60px", width: '100%', display: 'flex', flexWrap: 'wrap' }}>
+            <div className="dropdown-menu show" style={{ backgroundColor: '#d1d1d1', marginTop: "60px", width: '100%', display: 'flex', flexWrap: 'wrap' }}>
               {tags.map((tag, index) => (
                 <button type="button" className="btn btn-secondary" key={index} style={{ margin: '5px' }} onClick={() => {
                   // handleChange(tag);
