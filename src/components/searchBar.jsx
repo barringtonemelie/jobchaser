@@ -27,6 +27,7 @@ function SearchBar() {
 
   function handleChange(value) {
     setSearch(value.toString().toLowerCase());
+    //test kommentar
   }
 
   return (
