@@ -24,7 +24,7 @@ const jobSlice = createSlice({
             state.searchedJobs = state.value.filter(
                 (job) => {
                   console.log(keys.some(key => job[key].includes(state.currentSearch)))
-                  if (keys.some(key => job[key].includes(state.currentSearch))) {
+                  if (keys.some(key => job[key].toString().toLowerCase().includes(state.currentSearch))) {
                     console.log(job);
                     return job; 
                   }
