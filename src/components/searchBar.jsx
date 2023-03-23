@@ -1,21 +1,21 @@
 import { BsSearch, BsFilter } from 'react-icons/bs';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { JobItem } from './index';
 
 function SearchBar() {
   const jobs = useSelector((state) => state.data.value); 
-  const [search, setSearch] = useState();
+  const [search, setSearch] = useState("");
   const keys = ["description", "company", "tags"]
 
   const searchFiltering = (jobs) => {
     return jobs.filter(
       (item) => {
-        console.log(keys.some(key => item[key].includes(search)))
+        // console.log(keys.some(key => item[key].includes(search)))
         if (keys.some(key => item[key].includes(search))) {
           console.log(item);
-          return <JobItem data={item} key={item.id} /> // det här borde inte funka men retunera item istället o ta bort kommentar i rad 32 o kommentera rad 31
+          return item 
         }
       
       }
@@ -44,7 +44,7 @@ function SearchBar() {
               <BsSearch />
             </button>
           </div>
-          <input type="text" className="form-control rounded-3 border-success" placeholder="Search" aria-label="Search" style={{ marginRight: '10px', marginLeft: '10px' }} onChange={(e) => setSearch(e.target.value)} />
+          <input type="search" className="form-control rounded-3 border-success" placeholder="Search" aria-label="Search" style={{ marginRight: '10px', marginLeft: '10px' }} onChange={(e) => setSearch(e.target.value)} />
           <div className="input-group-append">
             <button className="btn btn-outline-secondary h-100" type="button">
               <BsFilter />
