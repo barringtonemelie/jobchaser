@@ -18,6 +18,7 @@ function App() {
 
   const jobs = useSelector((state) => state.data.searchedJobs); 
   // console.log(useSelector((state) => state.data.currentSearch)); 
+  
 
   return (
 
@@ -25,7 +26,7 @@ function App() {
       <div style={{ width: '65%' }}>
         <SearchBar />
         <ul style={{paddingLeft: '0', marginTop: '30px'}}>
-          {jobs.map((job) => <JobItem data={job} key={job.id} className="mt-3" />)}
+          {jobs.length > 0 ? jobs.map((job) => <JobItem data={job} key={job.id} className="mt-3" />) : <h2>Nothing matched your search.</h2>}
         </ul>
       </div>
     </div>

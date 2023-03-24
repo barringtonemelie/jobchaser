@@ -14,6 +14,7 @@ const jobSlice = createSlice({
     reducers: {
         setJobs: (state, action) => {
             state.value = action.payload;
+            state.searchedJobs = action.payload;
         },
         setSearchInput: (state, action) => {
             state.currentSearch = action.payload;
