@@ -34,3 +34,23 @@ function App() {
 }
 
 export default App
+
+/* 
+  
+
+*/
+
+
+/*
+Frågor till Sandra: 
+- Vad ska vi satsa på för att nå VG? Bolla idéerna vi hade 
+    - Kunna lägga till jobb (med formulär)
+    - Hämta in jobb via API
+    - Lägga till Firebase 
+    - Ha ett formulär för användaren att kunna ansöka till jobbet (React Hook Form, React router, validera med t.ex. yup)
+    - Lägga till användare i Firebase eller i en dataslice 
+    - 
+- Tips för sökningen (kunna söka med fler parametrar)
+- Är vår kod hittills på VG-nivå?
+
+*/
