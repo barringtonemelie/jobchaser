@@ -21,6 +21,15 @@ function SearchBar() {
     setSearchValue(value);
   }
 
+  function handleEnter(pressedKey) {
+    if (pressedKey === "Enter") {
+      console.log("Searched " + search.toString().toLowerCase());
+      dispatch(setSearchInput(search));
+      dispatch(filterSearch()); 
+      setShowFilters(false);
+    }
+  }
+
   const handleTagClick = (tag) => {
     setSearchValue("#" + tag);
     setShowFilters(false);
@@ -54,7 +63,7 @@ function SearchBar() {
               <BsSearch />
             </button>
           </div>
-          <input type="search" className="form-control rounded-3 border-success" placeholder="Search" aria-label="Search" style={{ marginRight: '10px', marginLeft: '10px' }} value={searchValue} onChange={(e) => handleChange(e.target.value)} />
+          <input type="search" className="form-control rounded-3 border-success" placeholder="Search" aria-label="Search" style={{ marginRight: '10px', marginLeft: '10px' }} value={searchValue} onChange={(e) => handleChange(e.target.value)} onKeyDown={(e) => handleEnter(e.key)} />
           <div className="input-group-append">
             <button className={`btn ${showFilters ? 'btn-primary h-100' : 'btn-outline-secondary h-100'}`} type="button" onClick={toggleFilters}>
               <BsFilter />
