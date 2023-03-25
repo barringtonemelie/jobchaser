@@ -17,8 +17,11 @@ function SearchBar() {
   };
 
   function handleChange(value) {
+    console.log(value);
     setSearch(value.toString().toLowerCase());
     setSearchValue(value);
+    dispatch(setSearchInput(value));
+    dispatch(filterSearch()); 
   }
 
   function handleEnter(pressedKey) {

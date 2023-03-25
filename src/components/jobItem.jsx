@@ -20,7 +20,7 @@ function JobItem(props) {
                 
                   <button className="btn btn-primary" onClick={() => {
                     let todaysDate = new Date();
-                    toast.success(props.data.description + " - " + props.data.company + ", Applied! \n" + todaysDate.toUTCString() , {
+                    toast.success(props.data.description + " - " + props.data.company + ", Applied! \n" + todaysDate.toLocaleString() , {
                     position: "top-center",
                     theme: "colored",
                     });
