@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from "react-redux"
 import { setSearchInput, filterSearch } from ".././store/slices/dataSlice"
 // import { JobItem } from './index';
 
-function SearchBar() {
+function SearchBar({ showFilters, setShowFilters }) {
   const jobs = useSelector((state) => state.data.value); 
-  const [search, setSearch] = useState();
-  const [searchValue, setSearchValue] = useState('');
-  const [showFilters, setShowFilters] = useState(false);
+  const [search, setSearch] = useState("");
+  const [searchValue, setSearchValue] = useState(''); 
+  // const [showFilters, setShowFilters] = useState(false);
   const dispatch = useDispatch()
  
   const toggleFilters = () => {
@@ -21,6 +21,7 @@ function SearchBar() {
     setSearchValue(value);
     dispatch(setSearchInput(value));
     dispatch(filterSearch()); 
+    setShowFilters(false);
   }
 
   function handleEnter(pressedKey) {
@@ -67,7 +68,7 @@ function SearchBar() {
           </div>
           <input type="search" className="form-control rounded-3 border-success" placeholder="Search" aria-label="Search" style={{ marginRight: '10px', marginLeft: '10px' }} value={searchValue} onChange={(e) => handleChange(e.target.value)} onKeyDown={(e) => handleEnter(e.key)} />
           <div className="input-group-append">
-            <button className={`btn ${showFilters ? 'btn-primary h-100' : 'btn-outline-secondary h-100'}`} type="button" onClick={toggleFilters}>
+            <button className={`btn ${showFilters ? 'btn-primary h-100' : 'btn-outline-secondary h-100'}`} type="button" onClick={toggleFilters} id="filterBtn">
               <BsFilter />
             </button>
           </div>
