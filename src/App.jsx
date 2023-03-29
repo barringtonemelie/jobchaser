@@ -12,30 +12,45 @@ function App() {
   const dispatch = useDispatch()
   const [showFilters, setShowFilters] = useState(false);
   const [currentTag, setCurrentTag] = useState(""); 
+  const [offset, setOffset] = useState(0); 
+  const [hits, setHits] = useState(0); 
 
   React.useEffect(() => {
     
             fetch(
-              `https://links.api.jobtechdev.se/joblinks?country=i46j_HmG_v64${currentTag}&offset=0&limit=100`
+              `https://links.api.jobtechdev.se/joblinks?country=i46j_HmG_v64${currentTag}&offset=${offset}&limit=100`
             )
               .then((res) => res.json())
               .then((data) => {
                 dispatch(setJobs(data.hits));
-                // console.log(data.hits);
-                // console.log(data.hits[4].headline)
-                // console.log(data.hits[4].brief)
-                // console.log(data.hits[4].occupation_group.label)
-                // console.log(data.hits[4].occupation_field.label)
-                // console.log(data.hits[4].employer.name)
-                // console.log(data.hits[4].workplace_addresses[0].municipality)
-                // console.log(data.hits[4].workplace_addresses[0].region)
-                // console.log(data.hits[4].workplace_addresses[0].country)
-                // console.log(data.hits[4].publication_date)
-                // console.log(data.hits[4].source_links[0].label)
-                // console.log(data.hits[4].source_links[0].url)
+                setHits(data.total.value);
               });
-  }, [currentTag])
+  }, [currentTag, offset])
 
+  /*  */
+  const nextPage = () => {
+ 
+    if (offset === Math.round(hits / 100) * 100) {
+      return
+    }
+    setOffset((prev) => {
+      console.log(prev);
+      return prev += 100
+    })
+    console.log('Next Page.')
+    
+    // kalla på fetch med värdet på offset
+  }
+  const prevPage = () => {
+    if (offset == 0) {
+      return
+    }
+    setOffset((prev) => (prev -= 100));
+    console.log('Previous Page.')
+
+    // kalla på fetch med värdet på offset
+  }
+  /*  */
 
   //Ifall man klickar utanför dropdown menyn så stängs den 
   function closeDropdown(event) {
@@ -69,8 +84,19 @@ function App() {
           currentTag={currentTag}
           setCurrentTag={(currentTag) => setCurrentTag(currentTag)}
         />
-        <DisplayTag tag={currentTag}/>
-        <p>Number of jobs: {jobs.length}</p>
+        <DisplayTag tag={currentTag} />
+        <p>
+          Searching in {jobs.length} of {hits} hits
+        </p>
+        {/* Sida */}
+        <div className="d-flex flex-row justify-content-between">
+          <button onClick={prevPage}>Previous Page.</button>
+          <p>
+            {jobs.length}/{hits}
+          </p>
+          <button onClick={nextPage}>Next Page.</button>
+          {/* Sida */}
+        </div>
         <ul style={{ paddingLeft: "0", marginTop: "30px" }}>
           {jobs.length > 0 ? (
             jobs.map((job) => (
