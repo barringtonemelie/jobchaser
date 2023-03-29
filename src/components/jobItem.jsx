@@ -3,36 +3,78 @@ import { toast } from 'react-toastify';
 function JobItem(props) {
   
   return (
-    
-        <div className="card mb-3 mt-3">
-          <div className="row no-gutters">
-            <div className="col-md-4">
-              <img src={props.data.img} className="card-img mr-auto ml-auto h-100" alt="Company Logo" style={{ width: '160px' }} />
+    <div className="card mb-3 mt-3">
+      <div className="row no-gutters">
+        {/* <div className="col-md-4">
+          <img src={props.data.img} className="card-img mr-auto ml-auto h-100" alt="Company Logo" style={{ width: '160px' }} />
+        </div> */}
+        <div className="col-md-8">
+          <div className="card-body">
+            <div>
+              <h3 className="card-title">{props.data.employer.name}</h3>
+              <h5 className="card-title">{props.data.headline}</h5>
+              <p className="card-text">{props.data.brief}</p>
             </div>
-            <div className="col-md-8">
-              <div className="card-body">
-                <div>
-                  <h5 className="card-title">{props.data.company}</h5>
-                  <p className="card-text">{props.data.description}</p>
-                </div>
-                <div className="d-flex justify-content-between align-items-center">
-                  <small>{"Posted " + props.data.time}</small>
-                
-                  <button className="btn btn-primary" onClick={() => {
-                    let todaysDate = new Date();
-                    toast.success(props.data.description + " - " + props.data.company + ", Applied! \n" + todaysDate.toLocaleString() , {
-                    position: "top-center",
-                    theme: "colored",
-                    });
-                  }}>Apply Now</button>
+            <div className="d-flex justify-content-between align-items-center">
+              <small>
+                {"Posted " +
+                  props.data.publication_date.toString().replace("T00:00:00", "")}
+              </small>
 
-                </div>
-                <span>{"#" + props.data.tags.join(' #')}</span>
-              </div>
+              {/* <button
+                className="btn btn-primary float-right"
+                onClick={() => {
+                  let todaysDate = new Date();
+                  toast.success(
+                    props.data.headline +
+                      " - " +
+                      props.data.employer.name +
+                      ", Applied! \n" +
+                      props.data.publication_date.toLocaleString(),
+                    {
+                      position: "top-center",
+                      theme: "colored",
+                    }
+                  );
+                }}
+              >
+                Apply Now
+              </button> */}
             </div>
+            {/* <span>{"#" + props.data.tags.join(" #")}</span> */}
           </div>
         </div>
-        
+      </div>
+      <button
+        className="btn btn-primary"
+        style={{
+          // width: "120px",
+          // height: "50px",
+          marginTop: "auto",
+          marginLeft: "auto",
+          marginBottom: "20px",
+          marginRight: "20px",
+        }}
+        onClick={() => {
+          let todaysDate = new Date();
+          toast.success(
+            props.data.headline +
+              " - " +
+              props.data.employer.name +
+              ", Applied! \n" +
+              props.data.publication_date
+                .toLocaleString()
+                .replace("T00:00:00", ""),
+            {
+              position: "top-center",
+              theme: "colored",
+            }
+          );
+        }}
+      >
+        Apply Now
+      </button>
+    </div>
   );
 }
 

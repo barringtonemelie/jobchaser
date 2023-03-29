@@ -18,8 +18,8 @@ function SearchBar({ showFilters, setShowFilters }) {
 
   function handleChange(value) {
     setSearch(value.toString().toLowerCase());
-    setSearchValue(value);
-    dispatch(setSearchInput(value));
+    setSearchValue(value.toString().toLowerCase());
+    dispatch(setSearchInput(value.toString().toLowerCase()));
     dispatch(filterSearch()); 
     setShowFilters(false);
   }
@@ -56,7 +56,7 @@ function SearchBar({ showFilters, setShowFilters }) {
   return (
 
     <div className="input-group mb-5 mt-5">
-          <div className="input-group-prepend">
+          {/* <div className="input-group-prepend">
             <button onClick={() => {
               console.log("Searched " + search.toString().toLowerCase());
               dispatch(setSearchInput(search));
@@ -65,8 +65,8 @@ function SearchBar({ showFilters, setShowFilters }) {
             }} className={"btn btn-primary h-100"} type="button" style={{backgroundColor: '#0d6efd'}} >
               <BsSearch />
             </button>
-          </div>
-          <input type="search" className="form-control rounded-3 border-success" placeholder="Search" aria-label="Search" style={{ marginRight: '10px', marginLeft: '10px' }} value={searchValue} onChange={(e) => handleChange(e.target.value)} onKeyDown={(e) => handleEnter(e.key)} />
+          </div> */}
+          <input type="search" className="form-control rounded-3 border-success" placeholder="Search" aria-label="Search" style={{ marginRight: '10px' }} value={searchValue} onChange={(e) => handleChange(e.target.value)} onKeyDown={(e) => handleEnter(e.key)} />
           <div className="input-group-append">
             <button className={`btn ${showFilters ? 'btn-primary h-100' : 'btn-outline-secondary h-100'}`} type="button" onClick={toggleFilters} id="filterBtn">
               <BsFilter />

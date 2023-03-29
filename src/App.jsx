@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useState } from 'react'
-import { JobItem, SearchBar } from './components/index.jsx';
+import { JobItem, SearchBar, APITesting } from './components/index.jsx';
 import { useDispatch, useSelector } from "react-redux"
 import store from "./store/index"
 import { setJobs } from "./store/slices/dataSlice"
@@ -12,18 +12,42 @@ function App() {
   const [showFilters, setShowFilters] = useState(false);
 
   React.useEffect(() => {
-    fetch("./src/data/data.json")
-      .then((res) => res.json())
-      .then((data) => {
-        dispatch(setJobs(data))
-      })
+    // fetch("./src/data/data.json")
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     dispatch(setJobs(data));
+    //   });
+            fetch(
+              `https://links.api.jobtechdev.se/joblinks?country=i46j_HmG_v64&q=Fullstack%20Developer&offset=0&limit=100`
+            )
+              .then((res) => res.json())
+              .then((data) => {
+                dispatch(setJobs(data.hits));
+                console.log(data.hits);
+                console.log(data.hits[4].headline)
+                console.log(data.hits[4].brief)
+                console.log(data.hits[4].occupation_group.label)
+                console.log(data.hits[4].occupation_field.label)
+                console.log(data.hits[4].employer.name)
+                console.log(data.hits[4].workplace_addresses[0].municipality)
+                console.log(data.hits[4].workplace_addresses[0].region)
+                console.log(data.hits[4].workplace_addresses[0].country)
+                console.log(data.hits[4].publication_date)
+                console.log(data.hits[4].source_links[0].label)
+                console.log(data.hits[4].source_links[0].url)
+              });
   }, [])
 
 
   //Ifall man klickar utanför dropdown menyn så stängs den 
   function closeDropdown(event) {
-    if (event.target.className !== "dropdown-menu show" && event.target.id !== "filterBtn") { 
+    if (event.target.nodeName === "svg") {
+      setShowFilters(!showFilters); 
+    }
+    else if (event.target.className !== "dropdown-menu show" && event.target.id !== "filterBtn") { 
         setShowFilters(false); 
+        console.log("setShowFilters blir false"); 
+        console.log(event.target.nodeName);
     }
     // else {
     //   console.log(event.target.className);
@@ -35,16 +59,33 @@ function App() {
   
 
   return (
-
-    <div className='mt-5' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} onClick={(e) => closeDropdown(e)}>
-      <div style={{ width: '65%' }}>
-        <SearchBar showFilters={showFilters} setShowFilters={(setFilter) => setShowFilters(setFilter)}/>
-        <ul style={{paddingLeft: '0', marginTop: '30px'}}>
-          {jobs.length > 0 ? jobs.map((job) => <JobItem data={job} key={job.id} className="mt-3" />) : <h2>Nothing matched your search.</h2>}
+    <div
+      className="mt-5"
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+      onClick={(e) => closeDropdown(e)}
+    >
+      <div style={{ width: "65%" }}>
+        <SearchBar
+          showFilters={showFilters}
+          setShowFilters={(setFilter) => setShowFilters(setFilter)}
+        />
+        <ul style={{ paddingLeft: "0", marginTop: "30px" }}>
+          {jobs.length > 0 ? (
+            jobs.map((job) => (
+              <JobItem data={job} key={job.id} className="mt-3" />
+            ))
+          ) : (
+            <h2>Nothing matched your search.</h2>
+          )}
         </ul>
+        <APITesting />
       </div>
     </div>
-  )
+  );
 }
 
 export default App
