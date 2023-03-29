@@ -1,42 +1,40 @@
 import * as React from 'react'
 import { useState } from 'react'
-import { JobItem, SearchBar, APITesting } from './components/index.jsx';
+import { JobItem, SearchBar, APITesting, DisplayTag } from './components/index.jsx';
 import { useDispatch, useSelector } from "react-redux"
 import store from "./store/index"
 import { setJobs } from "./store/slices/dataSlice"
+import { current } from '@reduxjs/toolkit';
 
 
 function App() {
 
   const dispatch = useDispatch()
   const [showFilters, setShowFilters] = useState(false);
+  const [currentTag, setCurrentTag] = useState(""); 
 
   React.useEffect(() => {
-    // fetch("./src/data/data.json")
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     dispatch(setJobs(data));
-    //   });
+    
             fetch(
-              `https://links.api.jobtechdev.se/joblinks?country=i46j_HmG_v64&q=Fullstack%20Developer&offset=0&limit=100`
+              `https://links.api.jobtechdev.se/joblinks?country=i46j_HmG_v64${currentTag}&offset=0&limit=100`
             )
               .then((res) => res.json())
               .then((data) => {
                 dispatch(setJobs(data.hits));
-                console.log(data.hits);
-                console.log(data.hits[4].headline)
-                console.log(data.hits[4].brief)
-                console.log(data.hits[4].occupation_group.label)
-                console.log(data.hits[4].occupation_field.label)
-                console.log(data.hits[4].employer.name)
-                console.log(data.hits[4].workplace_addresses[0].municipality)
-                console.log(data.hits[4].workplace_addresses[0].region)
-                console.log(data.hits[4].workplace_addresses[0].country)
-                console.log(data.hits[4].publication_date)
-                console.log(data.hits[4].source_links[0].label)
-                console.log(data.hits[4].source_links[0].url)
+                // console.log(data.hits);
+                // console.log(data.hits[4].headline)
+                // console.log(data.hits[4].brief)
+                // console.log(data.hits[4].occupation_group.label)
+                // console.log(data.hits[4].occupation_field.label)
+                // console.log(data.hits[4].employer.name)
+                // console.log(data.hits[4].workplace_addresses[0].municipality)
+                // console.log(data.hits[4].workplace_addresses[0].region)
+                // console.log(data.hits[4].workplace_addresses[0].country)
+                // console.log(data.hits[4].publication_date)
+                // console.log(data.hits[4].source_links[0].label)
+                // console.log(data.hits[4].source_links[0].url)
               });
-  }, [])
+  }, [currentTag])
 
 
   //Ifall man klickar utanför dropdown menyn så stängs den 
@@ -49,13 +47,9 @@ function App() {
         console.log("setShowFilters blir false"); 
         console.log(event.target.nodeName);
     }
-    // else {
-    //   console.log(event.target.className);
-    // }
   }
 
   const jobs = useSelector((state) => state.data.searchedJobs); 
-  // console.log(useSelector((state) => state.data.currentSearch)); 
   
 
   return (
@@ -72,7 +66,11 @@ function App() {
         <SearchBar
           showFilters={showFilters}
           setShowFilters={(setFilter) => setShowFilters(setFilter)}
+          currentTag={currentTag}
+          setCurrentTag={(currentTag) => setCurrentTag(currentTag)}
         />
+        <DisplayTag tag={currentTag}/>
+        <p>Number of jobs: {jobs.length}</p>
         <ul style={{ paddingLeft: "0", marginTop: "30px" }}>
           {jobs.length > 0 ? (
             jobs.map((job) => (

@@ -3,13 +3,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux"
 import { setSearchInput, filterSearch } from ".././store/slices/dataSlice"
-// import { JobItem } from './index';
 
-function SearchBar({ showFilters, setShowFilters }) {
-  const jobs = useSelector((state) => state.data.value); 
+
+function SearchBar({ showFilters, setShowFilters, currentTag, setCurrentTag }) {
   const [search, setSearch] = useState("");
   const [searchValue, setSearchValue] = useState(''); 
-  // const [showFilters, setShowFilters] = useState(false);
   const dispatch = useDispatch()
  
   const toggleFilters = () => {
@@ -34,23 +32,29 @@ function SearchBar({ showFilters, setShowFilters }) {
   }
 
   const handleTagClick = (tag) => {
-    setSearchValue("#" + tag);
+    //Uppdatera state med klickad tag 
+    const urlTag = "&q=" + tag.replace(" ", "%20");
+    setCurrentTag(urlTag);
+
+    //Stäng tag-menyn
     setShowFilters(false);
   };
 
   // Jag har lagt några extra taggar, vi kan göra koden snyggare på nästa gång vi jobbar tillsammans
   const tags = [
-    "backend",
-    "on-site",
-    "react",
-    "remote",
-    "frontend",
-    "internship",
-    "part-time",
-    "fullstack",
-    "full-time",
-    "developer",
-    "job",
+    "Fullstack Developer",
+    "Software Developer",
+    "Backend",
+    "Frontend",
+    "Data",
+    "Data Engineer",
+    "Data Scientist",
+    "IT",
+    "Data/IT", 
+    "Sytemutvecklare", 
+    "Mjukvaruutvecklare",
+    "UX",
+    "DevOps"
   ];
 
   return (
@@ -76,16 +80,16 @@ function SearchBar({ showFilters, setShowFilters }) {
             <div className="dropdown-menu show" style={{ backgroundColor: '#d1d1d1', marginTop: "60px", width: '100%', display: 'flex', flexWrap: 'wrap' }}>
               {tags.map((tag, index) => (
                 <button type="button" className="btn btn-secondary" key={index} style={{ margin: '5px' }} onClick={() => {
-                  // handleChange(tag);
-                  dispatch(setSearchInput(tag));
-                  dispatch(filterSearch());
-                  setShowFilters(false); 
+                  // dispatch(setSearchInput(tag));
+                  // dispatch(filterSearch());
+                  setShowFilters(false);
                   handleTagClick(tag)
                   // console.log(tag);
                 }}>{"#" + tag}</button>
               ))}
             </div>
             )}
+        
         </div>
 
   );
