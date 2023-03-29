@@ -18,7 +18,7 @@ function JobItem(props) {
             <div className="d-flex justify-content-between align-items-center">
               <small>
                 {"Posted " +
-                  props.data.publication_date.toString().replace("T00:00:00", "")}
+                  props.data.publication_date.toString().substring(0, props.data.publication_date.length - 9)}
               </small>
 
               {/* <button
@@ -63,8 +63,7 @@ function JobItem(props) {
               props.data.employer.name +
               ", Applied! \n" +
               props.data.publication_date
-                .toLocaleString()
-                .replace("T00:00:00", ""),
+                .toLocaleString().substring(0, props.data.publication_date.length - 9),
             {
               position: "top-center",
               theme: "colored",
