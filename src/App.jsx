@@ -98,14 +98,14 @@ function App() {
         </p>
         {/* Sida */}
         <div className="d-flex flex-row justify-content-between">
-          <button className='btn btn-primary' Aria-label="Previous Page" onClick={prevPage}>Page {offset / 100 + 1}</button>
+          <button className='btn btn-primary' aria-label="Previous Page" onClick={prevPage}>Page {offset / 100 + 1}</button>
           <p>
             Showing {jobs.length} jobs on page {offset / 100 + 1}
           </p>
           {/* <p>
             {jobs.length}/{hits}
           </p> */}
-          <button className='btn btn-primary' Aria-label="Next Page" onClick={nextPage}>Page {offset / 100 + 2}</button>
+          <button className='btn btn-primary' aria-label="Next Page" onClick={nextPage}>Page {offset / 100 + 2}</button>
         </div>
         {/* Sida */}
         <ul style={{ paddingLeft: "0", marginTop: "30px" }}>

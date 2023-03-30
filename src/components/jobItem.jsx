@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 function JobItem(props) {
   
   return (
-    <li className="card mb-3 mt-3" tabindex="0">
+    <li className="card mb-3 mt-3" tabIndex="0">
       <div className="row no-gutters">
         {/* <div className="col-md-4">
           <img src={props.data.img} className="card-img mr-auto ml-auto h-100" alt="Company Logo" style={{ width: '160px' }} />
@@ -47,7 +47,7 @@ function JobItem(props) {
       </div>
       <button
         className="btn btn-primary"
-        Aria-label="Apply now"
+        aria-label="Apply now"
         style={{
           // width: "120px",
           // height: "50px",
