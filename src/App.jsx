@@ -92,11 +92,11 @@ function App() {
         </p>
         {/* Sida */}
         <div className="d-flex flex-row justify-content-between">
-          <button className='btn btn-primary' onClick={prevPage}>Previous Page</button>
+          <button className='btn btn-primary' Aria-label="Previous Page" onClick={prevPage}>Previous Page</button>
           <p>
             {jobs.length}/{hits}
           </p>
-          <button className='btn btn-primary' onClick={nextPage}>Next Page</button>
+          <button className='btn btn-primary' Aria-label="Next Page" onClick={nextPage}>Next Page</button>
           {/* Sida */}
         </div>
         <ul style={{ paddingLeft: "0", marginTop: "30px" }}>

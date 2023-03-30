@@ -70,9 +70,9 @@ function SearchBar({ showFilters, setShowFilters, currentTag, setCurrentTag }) {
               <BsSearch />
             </button>
           </div> */}
-          <input type="search" className="form-control rounded-3 border-success" placeholder="Search" aria-label="Search" style={{ marginRight: '10px' }} value={searchValue} onChange={(e) => handleChange(e.target.value)} onKeyDown={(e) => handleEnter(e.key)} />
+          <input type="search" className="form-control rounded-3 border-success" placeholder="Search" aria-label="Search bar" style={{ marginRight: '10px' }} value={searchValue} onChange={(e) => handleChange(e.target.value)} onKeyDown={(e) => handleEnter(e.key)} />
           <div className="input-group-append">
-            <button className={`btn ${showFilters ? 'btn-primary h-100' : 'btn-outline-secondary h-100'}`} type="button" onClick={toggleFilters} id="filterBtn">
+            <button className={`btn ${showFilters ? 'btn-primary h-100' : 'btn-outline-secondary h-100'}`} Aria-label="Filter" type="button" onClick={toggleFilters} id="filterBtn">
               <BsFilter />
             </button>
           </div>
