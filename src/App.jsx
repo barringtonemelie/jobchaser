@@ -11,25 +11,25 @@ function App() {
 
   const dispatch = useDispatch()
   const [showFilters, setShowFilters] = useState(false);
-  const [currentTag, setCurrentTag] = useState(""); 
-  const [offset, setOffset] = useState(0); 
-  const [hits, setHits] = useState(0); 
+  const [currentTag, setCurrentTag] = useState("");
+  const [offset, setOffset] = useState(0);
+  const [hits, setHits] = useState(0);
 
   React.useEffect(() => {
-    
-            fetch(
-              `https://links.api.jobtechdev.se/joblinks?country=i46j_HmG_v64${currentTag}&offset=${offset}&limit=100`
-            )
-              .then((res) => res.json())
-              .then((data) => {
-                dispatch(setJobs(data.hits));
-                setHits(data.total.value);
-              });
+
+    fetch(
+      `https://links.api.jobtechdev.se/joblinks?country=i46j_HmG_v64${currentTag}&offset=${offset}&limit=100`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch(setJobs(data.hits));
+        setHits(data.total.value);
+      });
   }, [currentTag, offset])
 
   /*  */
   const nextPage = () => {
- 
+
     if (offset === Math.round(hits / 100) * 100) {
       return
     }
@@ -38,7 +38,7 @@ function App() {
       return prev += 100
     })
     console.log('Next Page.')
-    
+
     // kalla på fetch med värdet på offset
   }
   const prevPage = () => {
@@ -55,19 +55,19 @@ function App() {
   //Ifall man klickar utanför dropdown menyn så stängs den 
   function closeDropdown(event) {
     if (event.target.nodeName === "svg") {
-      setShowFilters(!showFilters); 
+      setShowFilters(!showFilters);
     }
-    else if (event.target.className !== "dropdown-menu show" && event.target.id !== "filterBtn") { 
-        setShowFilters(false); 
-        console.log("setShowFilters blir false"); 
-        console.log(event.target.nodeName);
+    else if (event.target.className !== "dropdown-menu show" && event.target.id !== "filterBtn") {
+      setShowFilters(false);
+      console.log("setShowFilters blir false");
+      console.log(event.target.nodeName);
     }
   }
 
-  const jobs = useSelector((state) => state.data.searchedJobs); 
+  const jobs = useSelector((state) => state.data.searchedJobs);
 
   let pageCount;
-  
+
 
   return (
     <div
@@ -87,18 +87,27 @@ function App() {
           setCurrentTag={(currentTag) => setCurrentTag(currentTag)}
         />
         <DisplayTag tag={currentTag} />
-        <p>
+        {/* <p>
           Searching in {jobs.length} of {hits} hits
+        </p> */}
+        <p>
+          Available jobs: {hits}
+        </p>
+        <p className='d-flex justify-content-center fs-1'>
+          Page {offset / 100 + 1}
         </p>
         {/* Sida */}
         <div className="d-flex flex-row justify-content-between">
-          <button className='btn btn-primary' onClick={prevPage}>Previous Page</button>
+          <button className='btn btn-primary' onClick={prevPage}>Page {offset / 100 + 1}</button>
           <p>
-            {jobs.length}/{hits}
+            Showing {jobs.length} jobs on page {offset / 100 + 1}
           </p>
-          <button className='btn btn-primary' onClick={nextPage}>Next Page</button>
-          {/* Sida */}
+          {/* <p>
+            {jobs.length}/{hits}
+          </p> */}
+          <button className='btn btn-primary' onClick={nextPage}>Page {offset / 100 + 2}</button>
         </div>
+        {/* Sida */}
         <ul style={{ paddingLeft: "0", marginTop: "30px" }}>
           {jobs.length > 0 ? (
             jobs.map((job) => (
@@ -108,7 +117,19 @@ function App() {
             <h2>Nothing matched your search.</h2>
           )}
         </ul>
-        <APITesting />
+        {/* Sida */}
+        <div className="d-flex flex-row justify-content-between">
+          <button className='btn btn-primary' onClick={prevPage}>Page {offset / 100 + 1}</button>
+          <p>
+            Showing {jobs.length} jobs on page {offset / 100 + 1}
+          </p>
+          {/* <p>
+            {jobs.length}/{hits}
+          </p> */}
+          <button className='btn btn-primary' onClick={nextPage}>Page {offset / 100 + 2}</button>
+        </div>
+        {/* Sida */}
+        {/* <APITesting /> */}
       </div>
     </div>
   );
