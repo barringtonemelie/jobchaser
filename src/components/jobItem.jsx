@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 function JobItem(props) {
   
   return (
-    <div className="card mb-3 mt-3">
+    <li className="card mb-3 mt-3" tabindex="0">
       <div className="row no-gutters">
         {/* <div className="col-md-4">
           <img src={props.data.img} className="card-img mr-auto ml-auto h-100" alt="Company Logo" style={{ width: '160px' }} />
@@ -11,8 +11,8 @@ function JobItem(props) {
         <div className="col-md-8">
           <div className="card-body">
             <div>
-              <h3 className="card-title">{props.data.employer.name}</h3>
-              <h5 className="card-title">{props.data.headline}</h5>
+              <h1 className="card-title" style={{ fontSize: '2rem' }}>{props.data.employer.name}</h1>
+              <h2 className="card-title" style={{ fontSize: '1.5rem' }}>{props.data.headline}</h2>
               <p className="card-text">{props.data.brief}</p>
             </div>
             <div className="d-flex justify-content-between align-items-center">
@@ -47,6 +47,7 @@ function JobItem(props) {
       </div>
       <button
         className="btn btn-primary"
+        Aria-label="Apply now"
         style={{
           // width: "120px",
           // height: "50px",
@@ -73,7 +74,7 @@ function JobItem(props) {
       >
         Apply Now
       </button>
-    </div>
+    </li>
   );
 }
 
