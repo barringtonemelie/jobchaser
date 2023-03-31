@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { useState } from 'react'
-import { JobItem, SearchBar, APITesting, DisplayTag } from './components/index.jsx';
+import { JobItem, SearchBar, DisplayTag } from './components/index.jsx';
 import { useDispatch, useSelector } from "react-redux"
 import store from "./store/index"
 import { setJobs } from "./store/slices/dataSlice"
-import { current } from '@reduxjs/toolkit';
+import { BsChevronDoubleLeft, BsChevronDoubleRight} from 'react-icons/bs';
 
 
 function App() {
@@ -27,51 +27,37 @@ function App() {
       });
   }, [currentTag, offset])
 
-  /*  */
   const nextPage = () => {
 
-    if (offset === Math.round(hits / 100) * 100) {
+    if (offset === Math.floor(hits / 100) * 100) {
       return
     }
     setOffset((prev) => {
-      console.log(prev);
       return prev += 100
     })
-    console.log('Next Page.')
-
-    // kalla på fetch med värdet på offset
   }
   const prevPage = () => {
     if (offset == 0) {
       return
     }
     setOffset((prev) => (prev -= 100));
-    console.log('Previous Page.')
-
-    // kalla på fetch med värdet på offset
   }
-  /*  */
 
   //Ifall man klickar utanför dropdown menyn så stängs den 
   function closeDropdown(event) {
-    if (event.target.nodeName === "svg") {
-      setShowFilters(!showFilters);
+    if (event.target.parentNode.id === "filterBtn") {
+      setShowFilters(!showFilters); 
     }
     else if (event.target.className !== "dropdown-menu show" && event.target.id !== "filterBtn") {
       setShowFilters(false);
-      console.log("setShowFilters blir false");
-      console.log(event.target.nodeName);
     }
   }
 
   const jobs = useSelector((state) => state.data.searchedJobs);
 
-  let pageCount;
-
-
   return (
     <div
-      className="mt-5"
+      className="mt-5 mb-3"
       style={{
         display: "flex",
         justifyContent: "center",
@@ -85,11 +71,9 @@ function App() {
           setShowFilters={(setFilter) => setShowFilters(setFilter)}
           currentTag={currentTag}
           setCurrentTag={(currentTag) => setCurrentTag(currentTag)}
+          setOffset={(currentOffset) => setOffset(currentOffset)}
         />
         <DisplayTag tag={currentTag} />
-        {/* <p>
-          Searching in {jobs.length} of {hits} hits
-        </p> */}
         <p>
           Available jobs: {hits}
         </p>
@@ -98,14 +82,11 @@ function App() {
         </p>
         {/* Sida */}
         <div className="d-flex flex-row justify-content-between">
-          <button className='btn btn-primary' aria-label="Previous Page" onClick={prevPage}>Page {offset / 100 + 1}</button>
+          <button id="prevPageBtnOne" className='btn btn-primary' aria-label="Previous Page" onClick={prevPage}><BsChevronDoubleLeft /></button>
           <p>
             Showing {jobs.length} jobs on page {offset / 100 + 1}
           </p>
-          {/* <p>
-            {jobs.length}/{hits}
-          </p> */}
-          <button className='btn btn-primary' aria-label="Next Page" onClick={nextPage}>Page {offset / 100 + 2}</button>
+          <button id="prevPageBtnTwo" className='btn btn-primary' aria-label="Next Page" onClick={nextPage}><BsChevronDoubleRight /></button>
         </div>
         {/* Sida */}
         <ul style={{ paddingLeft: "0", marginTop: "30px" }}>
@@ -119,14 +100,11 @@ function App() {
         </ul>
         {/* Sida */}
         <div className="d-flex flex-row justify-content-between">
-          <button className='btn btn-primary' onClick={prevPage}>Page {offset / 100 + 1}</button>
+          <button id="prevPageBtnTwo" className='btn btn-primary' onClick={prevPage}> <BsChevronDoubleLeft /> </button>
           <p>
             Showing {jobs.length} jobs on page {offset / 100 + 1}
           </p>
-          {/* <p>
-            {jobs.length}/{hits}
-          </p> */}
-          <button className='btn btn-primary' onClick={nextPage}>Page {offset / 100 + 2}</button>
+          <button id="nextPageBtnTwo" className='btn btn-primary' onClick={nextPage}> <BsChevronDoubleRight /> </button>
         </div>
       </div>
     </div>
@@ -134,22 +112,3 @@ function App() {
 }
 
 export default App
-
-/* 
-
-
-*/
-
-/*
-Frågor till Sandra: 
-- Vad ska vi satsa på för att nå VG? Bolla idéerna vi hade 
-    - Kunna lägga till jobb (med formulär)
-    - Hämta in jobb via API
-    - Lägga till Firebase 
-    - Ha ett formulär för användaren att kunna ansöka till jobbet (React Hook Form, React router, validera med t.ex. yup)
-    - Lägga till användare i Firebase eller i en dataslice 
-
-- Tips för sökningen (kunna söka med fler parametrar)
-- Är vår kod hittills på VG-nivå?
-
-*/

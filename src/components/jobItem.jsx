@@ -5,9 +5,6 @@ function JobItem(props) {
   return (
     <li className="card mb-3 mt-3" tabIndex="0">
       <div className="row no-gutters">
-        {/* <div className="col-md-4">
-          <img src={props.data.img} className="card-img mr-auto ml-auto h-100" alt="Company Logo" style={{ width: '160px' }} />
-        </div> */}
         <div className="col-md-8">
           <div className="card-body">
             <div>
@@ -20,28 +17,7 @@ function JobItem(props) {
                 {"Posted " +
                   props.data.publication_date.toString().substring(0, props.data.publication_date.length - 9)}
               </small>
-
-              {/* <button
-                className="btn btn-primary float-right"
-                onClick={() => {
-                  let todaysDate = new Date();
-                  toast.success(
-                    props.data.headline +
-                      " - " +
-                      props.data.employer.name +
-                      ", Applied! \n" +
-                      props.data.publication_date.toLocaleString(),
-                    {
-                      position: "top-center",
-                      theme: "colored",
-                    }
-                  );
-                }}
-              >
-                Apply Now
-              </button> */}
             </div>
-            {/* <span>{"#" + props.data.tags.join(" #")}</span> */}
           </div>
         </div>
       </div>
@@ -49,8 +25,6 @@ function JobItem(props) {
         className="btn btn-primary"
         aria-label="Apply now"
         style={{
-          // width: "120px",
-          // height: "50px",
           marginTop: "auto",
           marginLeft: "auto",
           marginBottom: "20px",
