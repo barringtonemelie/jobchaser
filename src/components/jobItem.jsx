@@ -1,6 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+
 function JobItem(props) {
+
+  const navigate = useNavigate(); 
   
   return (
     <li className="card mb-3 mt-3" tabIndex="0">
@@ -30,21 +34,23 @@ function JobItem(props) {
           marginBottom: "20px",
           marginRight: "20px",
         }}
-        onClick={() => {
-          let todaysDate = new Date();
-          toast.success(
-            props.data.headline +
-              " - " +
-              props.data.employer.name +
-              ", Applied! \n" +
-              props.data.publication_date
-                .toLocaleString().substring(0, props.data.publication_date.length - 9),
-            {
-              position: "top-center",
-              theme: "colored",
-            }
-          );
-        }}
+        onClick={() => navigate("/apply-page-one")}
+        // onClick={() => {
+
+          // let todaysDate = new Date();
+          // toast.success(
+          //   props.data.headline +
+          //     " - " +
+          //     props.data.employer.name +
+          //     ", Applied! \n" +
+          //     props.data.publication_date
+          //       .toLocaleString().substring(0, props.data.publication_date.length - 9),
+          //   {
+          //     position: "top-center",
+          //     theme: "colored",
+          //   }
+          // );
+        // }}
       >
         Apply Now
       </button>
