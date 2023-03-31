@@ -128,8 +128,6 @@ function App() {
           </p> */}
           <button className='btn btn-primary' onClick={nextPage}>Page {offset / 100 + 2}</button>
         </div>
-        {/* Sida */}
-        {/* <APITesting /> */}
       </div>
     </div>
   );
