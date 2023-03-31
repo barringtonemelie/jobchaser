@@ -50,7 +50,6 @@ export default function ApplicationFormResult() {
                             About you: 
                             </Heading>
                             <Text pt='2' fontSize='sm'>
-                            Blh blah
                             </Text>
                         </Box>
                         </Stack>

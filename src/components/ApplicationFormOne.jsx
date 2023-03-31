@@ -21,7 +21,8 @@ import {
   Select,
   Checkbox,
   Button,
-  Textarea
+  Textarea,
+  FormHelperText
 } from '@chakra-ui/react'
 import { useNavigate } from "react-router-dom"; 
 
@@ -34,25 +35,29 @@ const schema = yup.object({
 
 export default function ApplicationFormOne() {
 
-  const { register, handleSubmit, watch, formState: { errors } } = useForm({
+  const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(schema)
   });
   const onSubmit = (data) => {
+    console.log("onSubmit ran"); 
+    changePage(); 
     console.log(data)
-    navigate("/jobapplicationtwo")
   };
+  const changePage = () => {
+    navigate("/apply-page-res");
+  }
 
   const navigate = useNavigate(); 
 
   return (
       <Container maxW="container.xl" p={10}> 
-        <form>
+        <form onSubmit={onSubmit}>
           <SimpleGrid columns={2} columnGap={3} rowGap={6} w="full">
 
             <GridItem colSpan={1}>
               <FormControl isRequired>
                 <FormLabel>First name</FormLabel>
-                <Input placeholder="Jane"></Input>
+                <Input id="firstName" placeholder="Jane" {...register("firstName")}></Input>
                 <FormErrorMessage></FormErrorMessage>
               </FormControl>
             </GridItem>
@@ -116,17 +121,40 @@ export default function ApplicationFormOne() {
             </GridItem>
 
             <GridItem colSpan={2}>
-              <FormControl isRequired>
-                <Checkbox>I accept the terms and conditions</Checkbox>
-              </FormControl>
-            </GridItem>
+                <FormControl isRequired>
+                    <FormLabel>Tell us about yourself: </FormLabel>
+                    <Textarea placeholder="I love Green Day" />
+                </FormControl>
+                </GridItem>
+                
+                <GridItem colSpan={2}>
+                <FormControl isRequired>
+                    <FormLabel>Email address: </FormLabel>
+                    <Input 
+                    type='email' 
+                    errorBorderColor='crimson'
+                    placeholder='jane.doe@greenday.com'
+                    />
+                    <FormHelperText>We'll never share your email.</FormHelperText>
+                </FormControl>
+                </GridItem>
 
-            
+                <GridItem colSpan={2}>
+                <FormControl isRequired>
+                    <FormLabel>Phone number</FormLabel>
+                    <Input type='tel' placeholder='Phone number' />
+                </FormControl>
+                </GridItem>
 
-            <GridItem colSpan={2}>
-              <Button type="submit" size="lg" w="full" onSubmit={handleSubmit(onSubmit)}>Next</Button>
-            </GridItem>
+                <GridItem colSpan={2}>
+                  <FormControl isRequired>
+                    <Checkbox>I accept the terms and conditions</Checkbox>
+                  </FormControl>
+                </GridItem>
 
+                <GridItem colSpan={2}>
+                  <Button size="lg" w="full" type="submit">Apply</Button>
+                </GridItem>
           </SimpleGrid>
         </form>
       </Container>
