@@ -1,11 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux"
+import { setAppliedJob } from "../store/slices/appliedJobData"
+
 
 function JobItem(props) {
 
   const navigate = useNavigate(); 
-  
+  const dispatch = useDispatch();
   return (
     <li className="card mb-3 mt-3" tabIndex="0">
       <div className="row no-gutters">
@@ -34,23 +37,11 @@ function JobItem(props) {
           marginBottom: "20px",
           marginRight: "20px",
         }}
-        onClick={() => navigate("/apply-page-one")}
-        // onClick={() => {
-
-          // let todaysDate = new Date();
-          // toast.success(
-          //   props.data.headline +
-          //     " - " +
-          //     props.data.employer.name +
-          //     ", Applied! \n" +
-          //     props.data.publication_date
-          //       .toLocaleString().substring(0, props.data.publication_date.length - 9),
-          //   {
-          //     position: "top-center",
-          //     theme: "colored",
-          //   }
-          // );
-        // }}
+        onClick={() => {
+          navigate("/apply-page-one");
+          dispatch(setAppliedJob(props.data));
+          console.log("the data that is being passed to the state: " + props.data);
+        }}
       >
         Apply Now
       </button>

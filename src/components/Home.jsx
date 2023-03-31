@@ -53,6 +53,7 @@ function Home() {
   }
 
   const jobs = useSelector((state) => state.data.searchedJobs);
+  
 
   return (
     <div
@@ -69,9 +70,19 @@ function Home() {
           showFilters={showFilters}
           setShowFilters={(setFilter) => setShowFilters(setFilter)}
           currentTag={currentTag}
-          setCurrentTag={(currentTag) => setCurrentTag(currentTag)}
+          setCurrentTag={(currentTag) => {
+            setOffset(0)
+            setCurrentTag(currentTag)
+          }}
           setOffset={(currentOffset) => setOffset(currentOffset)}
         />
+        {/* <SearchBar
+          showFilters={showFilters}
+          setShowFilters={(setFilter) => setShowFilters(setFilter)}
+          currentTag={currentTag}
+          setCurrentTag={(currentTag) => setCurrentTag(currentTag)}
+          setOffset={(currentOffset) => setOffset(currentOffset)}
+        /> */}
         <DisplayTag tag={currentTag} />
         <p>
           Available jobs: {hits}
