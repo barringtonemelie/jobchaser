@@ -1,15 +1,7 @@
 # Jobchaser
  
-A project by Team Banana @ Chas Academy!
+## A project by Team Banana @ Chas Academy!
 
-Diego Rivas Marroquin
+This is an app to help students find and apply to jobs and/or internships. It fetches data from an API about available jobs in Sweden and the user can then filter and search among the jobs. 
 
-Abubakar Abdulkader
-
-Oliver Sandström!
-
-Emelie Barrington
-
-Gustav Johansson Andersson
-
-Test att pusha 
+Made by: Diego Rivas Marroquin, Abubakar Abdulkader, Oliver Sandström, Emelie Barrington, Gustav Johansson Andersson
